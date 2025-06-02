@@ -1,0 +1,80 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-4 mb-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-success text-white text-center py-3">
+            <h3 class="mb-0">Booking Confirmation</h3>
+            <p class="mb-0">Please review your booking details before finalizing.</p>
+        </div>
+        <div class="card-body p-4">
+            <div class="row">
+                <div class="col-md-6 border-end">
+                    <h5 class="text-success mb-3 text-center"><i class="bi bi-bus-front me-2"></i>Bus & Trip Details</h5>
+                    <hr>
+                    <div *ngIf="ticketDetails" class="mb-4">
+                        <p class="mb-1 text-center"><strong>Bus Name :</strong> {{ ticketDetails.paribahonName }}</p>
+                        <p class="mb-1 text-center"><strong>Type :</strong> {{ ticketDetails.paribahonType }}</p>
+                        <p class="mb-1 text-center"><strong>Route :</strong> {{ ticketDetails.fromCity }} - {{ ticketDetails.toCity }}</p>
+                        <p class="mb-1 text-center"><strong>Date of Journey :</strong> {{ ticketDetails.doj }}</p>
+                        <p class="mb-1 text-center"><strong>Departure Time :</strong> {{ ticketDetails.startingTime }}:00 {{ ticketDetails.startingTime < 12 ? 'AM' : 'PM' }}</p>
+                        <p class="mb-1 text-center"><strong>Arrival Time :</strong> {{ ticketDetails.endingTime }}:00 {{ ticketDetails.endingTime < 12 ? 'AM' : 'PM' }}</p>
+                        <p class="mb-1 text-center"><strong>Seats :</strong> <span class="fw-bold text-primary"> {{ selectedSeats.join(', ') }}</span></p>
+                        <p class="mb-1 text-center"><strong>Total Fare :</strong> <span class="fs-5 text-success"> ৳{{ ticketDetails.price * selectedSeats.length }}</span></p>
+                    </div>
+
+                    <div *ngIf="boardingPoint" class="mb-4">
+                        <h4 class="text-success mb-2 text-center"><i class="bi bi-geo-alt-fill me-2"></i>Boarding Point</h4>
+                        <p class="mb-1 text-center"><strong>Location:</strong> {{ boardingPoint.name }}</p>
+                        <p class="mb-1 text-center"><strong>Time:</strong> {{ boardingPoint.time }} AM</p>
+                        <p class="mb-0 text-center"><strong>Address:</strong> {{ boardingPoint.address }}</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <h5 class="text-success mb-3 text-center"><i class="bi bi-person-fill me-2"></i>Contact & Passenger Details</h5>
+                    <hr>
+                    <div class="mb-4">
+                        <h5 class="text-success mb-2 text-center"><i class="bi bi-telephone-fill me-2"></i>Contact Information</h5>
+                        <p class="mb-1 text-center"><strong>Mobile No. :</strong> {{ mobileNumber }}</p>
+                        <p class="mb-0 text-center"><strong>Email :</strong> {{ email }}</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="text-success mb-2 text-center"><i class="bi bi-person-badge-fill me-2"></i>Passenger Information</h5>
+                        <div *ngIf="passengerDetails" class="mb-2">
+                            <p class="mb-1 text-center"><strong>Passenger 1:</strong></p>
+                            <p class="mb-1 ms-3 text-center"><span class="fw-bold">Name :</span> {{ passengerDetails.firstName }} {{ passengerDetails.lastName }}</p>
+                            <p class="mb-0 ms-3 text-center"><span class="fw-bold">Gender :</span> {{ passengerDetails.gender }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4">
+            <div class="text-center d-grid">
+                <button class="btn btn-success btn-lg px-5" (click)="finalizeBooking()">Confirm Booking</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': showConfirmationModal ? 'block' : 'none'}">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">Booking Finalized!</h5>
+                <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="closeConfirmationModal()"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p class="text-center fw-normal">Thank you for your purchase.</p>
+                <p class="text-center fw-normal">Have a nice Journey sir...</p>
+                <i class="bi bi-check-circle-fill text-success" style="font-size: 3rem;"></i>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-success" (click)="closeConfirmationModal()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade" [ngClass]="{'show': showConfirmationModal}" *ngIf="showConfirmationModal"></div>

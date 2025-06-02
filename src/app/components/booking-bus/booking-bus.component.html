@@ -1,0 +1,550 @@
+<app-navbar></app-navbar>
+<div class="container mt-4">
+  <div class="d-flex flex-wrap align-items-center gap-2">
+    <!-- From Input -->
+    <div class="input-group" style="max-width: 200px">
+      <span class="input-group-text bg-white">
+        <i class="bi bi-geo-alt-fill text-success"></i>
+      </span>
+      <input type="text" class="form-control" defaultValue="{{ fromCity }}" />
+    </div>
+
+    <img src="../../../assets/arrowDirection.png" height="50" />
+
+    <!-- To Input -->
+    <div class="input-group" style="max-width: 200px">
+      <span class="input-group-text bg-white">
+        <i class="bi bi-geo-fill text-success"></i>
+      </span>
+      <input type="text" class="form-control" defaultValue="{{ toCity }}" />
+    </div>
+
+    <!-- Date Picker -->
+    <input
+      type="text"
+      class="form-control"
+      style="max-width: 200px"
+      defaultValue="{{ doj }}"
+      placeholder="Select Date"
+      readonly
+    />
+
+    <!-- Add Return -->
+    <div
+      class="px-2 text-warning"
+      style="cursor: pointer; border-left: 1px solid #ccc"
+    >
+      <button class="btn btn-warning">+ ADD RETURN</button>
+    </div>
+
+    <!-- Search Button -->
+    <button class="btn btn-success fw-bold ms-auto">SEARCH</button>
+  </div>
+</div>
+<div class="bg-success text-white p-3 mt-2">
+  <div class="container flex d-flex align-items-center gap-3">
+    <h5>Choose Departing Ticket</h5>
+    <img src="../../../assets/whiteArrow.jpg" alt="" height="20" />
+    <h5>Passenger Details</h5>
+    <img src="../../../assets/whiteArrow.jpg" alt="" height="20" />
+    <h5>Review & Pay</h5>
+  </div>
+</div>
+
+<!-- <div class="container mt-4">
+  <h4>Available Buses from {{ fromCity }} to {{ toCity }} on {{ doj }}</h4>
+  <div class="row mt-3">
+    <div class="col-md-12" *ngFor="let bus of buses">
+      <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ bus.paribahonName }}</h5>
+          <p class="card-text">{{ bus.paribahonType }}</p>
+          <div class="d-flex justify-content-between">
+            <div><strong>Departure:</strong> {{ bus.startingTime }}:00</div>
+            <div><strong>Arrival:</strong> {{ bus.endingTime }}:00</div>
+            <div><strong>Price:</strong> ৳{{ bus.price }}</div>
+            <button class="btn btn-success">Book Ticket</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="container mt-3">
+  <div class="row">
+    <!-- Left Side Filter -->
+    <div class="col-md-3">
+      <div class="card p-3 shadow-sm">
+        <div class="flex d-flex align-items-center gap-2 pb-2">
+          <h4>Filters</h4>
+          <button type="button" class="btn btn-outline-success">Reset</button>
+        </div>
+
+        <div class="mb-3">
+          <strong class="text-warning">Bus Type</strong><br />
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="acBus" />
+            <label class="form-check-label" for="acBus">AC</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="nonAcBus" />
+            <label class="form-check-label" for="nonAcBus">Non-AC</label>
+          </div>
+        </div>
+
+        <div class="pb-4">
+          <strong class="text-warning pb-4">Operator</strong><br />
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="greenLine" />
+            <label class="form-check-label" for="greenLine"
+              >Hanif Enterprise</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="shohag" />
+            <label class="form-check-label" for="shohag"
+              >Green Line Paribahan</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="shohag" />
+            <label class="form-check-label" for="shohag"
+              >Soudia Coach Service</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="shohag" />
+            <label class="form-check-label" for="shohag"
+              >Saintmartin Hyundai</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="shohag" />
+            <label class="form-check-label" for="shohag"
+              >Hanif Enterprise</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="shohag" />
+            <label class="form-check-label" for="shohag">Royal Coach</label>
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="shohag" />
+            <label class="form-check-label" for="shohag"
+              >Bolesswar Paribahan Ltd</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="shohag" />
+            <label class="form-check-label" for="shohag"
+              >SHOHAGH PARIBAHAN</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="shohag" />
+            <label class="form-check-label" for="shohag">LONDON EXPRESS</label>
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="shohag" />
+            <label class="form-check-label" for="shohag"
+              >Royal Maitri Service</label
+            >
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <strong class="text-warning pb-4">Boarding Point</strong><br />
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="gabtoli" />
+            <label class="form-check-label" for="gabtoli"
+              >Gabtoli AC Counter</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >Gabtoli B 6 Counter</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >Kallyanpur BRTC Counter</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >Kolabagan B 3 Counter</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >Fokirapool B 4 Counter</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >Saydabad B 11 Counter</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >Gabtoli B 6 Counte</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >Saydabad B 5 Counter</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >Saidabad B 10 Counter</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >KALLYANPUR BRTC</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >GABTOLI CTG ZONE COUNTER</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >PANTHOPATH COUNTER</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >ARAMBAG COUNTER</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan">Razarbagh1</label>
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >Abdullahpur Bus Point</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >Norda Bus Point.</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >Chittagong Road</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >Kachpur Bus Point</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan">Kamlapur</label>
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >SAVAR PAKIZA COUNTER</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan">PALLABI</label>
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >Kalshi Bus Point</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >Kachukhet Bus Point</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >HEMAYATPUR COUNTER</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >NOBINAGAR COUNTER</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >Bishmile bus poin</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >Janapath 4 Counter</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >Signboard bus point</label
+            >
+          </div>
+          <div class="form-check pb-2">
+            <input class="form-check-input" type="checkbox" id="kalabagan" />
+            <label class="form-check-label" for="kalabagan"
+              >TAXI CAB COUNTER</label
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side Bus List -->
+    <div class="col-md-9">
+      <div class="flex d-flex align-items-center gap-2 pb-2">
+        <button type="button" class="btn btn-outline-success" (click)="sortBuses('asc')">
+          LOW TO HIGH
+        </button>
+        <button type="button" class="btn btn-outline-success" (click)="sortBuses('desc')">
+          HIGH TO LOW
+        </button>
+      </div>
+      <div class="row">
+        <div class="col-md-12" *ngFor="let bus of buses">
+          <div class="card mb-3 shadow-sm">
+            <div class="card-body">
+              <div
+                class="flex d-flex align-items-center gap-5 justify-content-center"
+              >
+                <div>
+                  <h5 class="fw-bold">{{ bus.paribahonName }}</h5>
+                  <p>{{ bus.paribahonType }}</p>
+                  <p>Route: {{ fromCity }} - {{ toCity }}</p>
+                </div>
+                <div>
+                  <h5>{{ bus.startingTime }}:00 AM</h5>
+                  <p>{{ doj }}</p>
+                  <p>{{ fromCity }}</p>
+                </div>
+                <div>
+                  <h5>{{ bus.endingTime }}:00 PM</h5>
+                  <p>{{ doj }}</p>
+                  <p>{{ toCity }}</p>
+                </div>
+                <div>
+                  <h5 class="fw-bold">৳{{ bus.price }}</h5>
+                </div>
+                <div>
+                  <button
+                    class="btn btn-success"
+                    (click)="openModal(content, bus)"
+                  >
+                    Book Ticket
+                  </button>
+                </div>
+              </div>
+              <div class="px-4">
+                <div class="flex d-flex align-items-center gap-3">
+                  <button type="button" class="btn btn-outline-success">
+                    cancellation Policy
+                  </button>
+                  <button type="button" class="btn btn-outline-success">
+                    Boarding Point
+                  </button>
+                  <button type="button" class="btn btn-outline-success">
+                    Droping Point
+                  </button>
+                  <button type="button" class="btn btn-outline-success">
+                    Amenities
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Select Seats</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div class="row mb-3">
+      <div class="col-12">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Seats</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Amenities</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Policies</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Trip Details</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <h5 class="fw-bold text-center">{{ selectedTicket?.paribahonName }}</h5>
+      <p class="text-center">
+        {{ selectedTicket?.paribahonType }} <br />
+        Coach No. #500
+      </p>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="row">
+          <div class="col-md-3">
+            <p>
+              Departure <br />
+              {{ fromCity }} <br />
+              <span class="fw-bold"
+                >0{{ selectedTicket?.startingTime }}:00 AM</span
+              >
+              <br>
+             Trip time may delay due to traffic
+            </p>
+          </div>
+          <div class="col-md-6">
+            <p>--------------------------------</p>
+          </div>
+          <div class="col-md-3">
+            <p>
+              Arrival <br />
+              {{ toCity }} <br />
+              <span class="fw-bold">0{{ selectedTicket?.endingTime }}:00 AM</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-warning p-2 mb-2">
+       <h5 class="text-center">Maximum 4 seats can be selected.</h5>
+    </div>
+    <div class="row mb-3">
+      <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="badge bg-light text-dark me-2">Available</span>
+          <span class="badge bg-secondary me-2">Sold</span>
+          <span class="badge bg-success">Selected</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="seat-layout">
+          <ng-container *ngFor="let s of s2; let i = index">
+            <button
+              type="button"
+              class="seat-btn btn m-1"
+              [class.btn-outline-primary]="
+                !isSeatSelected(s) && !isSeatBooked(s)
+              "
+              [class.btn-success]="isSeatSelected(s)"
+              [class.btn-secondary]="isSeatBooked(s)"
+              [disabled]="isSeatBooked(s)"
+              (click)="toggleSeatSelection(s)"
+            >
+              {{ s }}
+            </button>
+            <br *ngIf="(i + 1) % 4 === 0" />
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer d-flex justify-content-between align-items-center">
+    <div *ngIf="selectedSeats.length > 0">
+      <span class="me-2">{{ selectedSeats.length }} ticket(s) selected</span>
+      <span class="fs-4 text-success">৳{{ selectedTicket?.price * selectedSeats.length }}</span>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-success"
+      [disabled]="selectedSeats.length === 0"
+      (click)="onContinueBooking(boardingPointModal)"
+    >
+      Continue
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #boardingPointModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title" id="boardingPointModalLabel">
+            <button type="button" class="btn btn-link p-0 text-dark me-2" (click)="goBackToSeatSelection(content)">
+                <i class="bi bi-arrow-left"></i> </button>
+            Select Boarding Point
+        </h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div *ngFor="let point of boardingPoints" class="card mb-2 p-3" (click)="selectBoardingPoint(point)"
+            [class.bg-success]="isBoardingPointSelected(point)"
+            [class.text-white]="isBoardingPointSelected(point)"
+            style="cursor: pointer;">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="mb-1">{{ point.name }}</h6>
+                    <small>{{ point.address }}</small><br>
+                    <button class="btn btn-sm btn-outline-secondary mt-1 me-2" [class.text-white]="isBoardingPointSelected(point)">Direction</button>
+                    <button class="btn btn-sm btn-outline-secondary mt-1" [class.text-white]="isBoardingPointSelected(point)">Landmarks</button>
+                </div>
+                <span class="fw-bold">{{ point.time }}AM</span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer d-flex justify-content-between align-items-center">
+        <div>
+            <span class="me-2">{{ selectedSeats.length }} ticket(s) selected</span>
+            <span class="fs-4 text-success" [class.text-white]="selectedBoardingPoint">৳{{ selectedTicket?.price * selectedSeats.length }}</span>
+        </div>
+        <button
+            type="button"
+            class="btn btn-success"
+            [disabled]="!selectedBoardingPoint"
+            (click)="onContinueBoarding()"
+        >
+            Continue
+        </button>
+    </div>
+</ng-template>
